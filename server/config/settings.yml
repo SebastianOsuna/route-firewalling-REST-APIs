@@ -1,0 +1,4 @@
+headers:
+    # Header name for the token.
+    # This same header name must be used when making request to routes (actions) behind the firewall.
+    accessToken: X-Access-Token
