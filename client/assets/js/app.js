@@ -6,6 +6,8 @@
 
 	var PRIVATE = SERVER + "private";
 
+	var PUBLIC = SERVER + "public";
+
 	var token, header;
 
 	$("#submit").click(function(event) {
@@ -72,4 +74,13 @@
 			$("#private-zone-content-notoken").text( "You haven't logged in, don't cheat!" ).css( { color: 'red' } );
 		}
 	});
+
+	if( $("#public-zone") ) { 
+		$.get( PUBLIC ).done( function( data ) {
+			$("#public-zone-content").text( data.message ).css( { color: 'green' } );
+		} ).fail( function() {
+			$("#public-zone-content").text( "This is just embarrasing. Sorry!" ).css( { color: 'red' } );
+		} );
+	}
+	
 })();
