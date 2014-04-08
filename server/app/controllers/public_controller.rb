@@ -22,7 +22,7 @@ class PublicController < ApplicationController
 				# Save the newly generated token
 				user.save
 				# Respond with the token and any other relevant information
-				render json: { token: user.accessToken, id: user.id } and return
+				render json: { token: user.accessToken, id: user.id, header: Settings.headers.accessToken } and return
 			end
 		end
 		# If username or password are not given or invalid credentials, respond with an error message

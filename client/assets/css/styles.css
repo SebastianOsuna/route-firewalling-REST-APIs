@@ -1,0 +1,30 @@
+.login-box {
+	width: 350px;
+	margin: 0px auto;
+	margin-top: 15%;
+	padding: 15px;
+	border: 1px solid black;
+}
+
+.login-box div {
+	padding: 5px 0px;
+}
+
+.login-box label, .login-box input {
+	display: block;
+	width: 90%;
+	margin: 0px auto;
+}
+
+.login-box #submit {
+	margin: 15px 0px;
+	margin-left: 78%;
+}
+
+#login-error {
+	color: red;
+}
+
+#private-zone {
+	display: none;
+}

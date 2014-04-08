@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>Route Firewalling REST APIs - Ruby On Rails</title>
+		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" />
+	</head>
+	<body>
+		<div>
+			<div class="login-box">
+				<div>
+					<span id="login-error"></span>
+				</div>
+				<div>
+					<label>Username</label>
+					<input type="text" name="username" id="username" />
+				</div>
+				<div>
+					<label>Password</label>
+					<input type="password" name="password" id="password" />
+				</div>
+				<div>
+					<button id="submit" class="submit" >Submit</button>
+				</div>
+				<div>
+					<a href="public.html">or visit the public zone.</a>
+				</div>
+			</div>
+			<div id="private-zone">
+				<div>
+					<label>Your user ID is:</label><span id="user-id"></span>
+				</div>
+				<div>
+					<label>Your token is:</label><span id="user-token"></span>
+				</div>
+				<div>
+					<div>
+ 						<button id="check-private-zone">Check the private zone!</button>
+					</div>
+					<div>
+						<span id="private-zone-content"></span>
+					</div>
+				</div>
+				<div>
+					<div>
+ 						<button id="check-private-zone-notoken">Now, try it without token...</button>
+					</div>
+					<div>
+						<span id="private-zone-content-notoken"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="vendor/js/jquery.min.js" ></script>
+		<script type="text/javascript" src="assets/js/app.js" ></script>
+	</body>
+</html>
