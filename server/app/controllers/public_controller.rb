@@ -1,7 +1,7 @@
 class PublicController < ApplicationController 
 	include Firewall
 
-	def publicZone
+	def public_zone
 		# This is just for code clarity.
 		# If the action is public (not behind the 'firewall') this can be removed.
 		# The only relevant value is :private. See private_controller to check it's usage.
@@ -22,12 +22,16 @@ class PublicController < ApplicationController
 				# Save the newly generated token
 				user.save
 				# Respond with the token and any other relevant information
-				render json: { token: user.accessToken, id: user.id, header: Settings.headers.accessToken } and return
+				render json: { token: user.accessToken, id: user.id, header: Settings.headers.accessToken, role: user.role } and return
 			end
 		end
 		# If username or password are not given or invalid credentials, respond with an error message
 		render json: { error: 'Unauthorized', code: 401 }, :status => '401'
-	end
+    end
+
+    def users
+        render json: User.all
+    end
 
 	def _404
 		render json: { error: 'Resource not found.' }, :status => 404

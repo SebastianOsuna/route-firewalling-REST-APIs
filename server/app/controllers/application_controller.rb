@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   	def cor
   		# Accept request from localhost
-		headers["Access-Control-Allow-Origin"]  = "null"
+		headers["Access-Control-Allow-Origin"]  = "*"
 		headers["Access-Control-Allow-Methods"] = %w{GET POST PUT DELETE}.join(",")
 		headers["Access-Control-Allow-Headers"] = %w{Origin Accept Content-Type X-Requested-With X-CSRF-Token}.join(",") + "," +  Settings.headers.accessToken
 		head(:ok) if request.request_method == "OPTIONS"

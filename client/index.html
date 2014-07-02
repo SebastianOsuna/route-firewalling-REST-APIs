@@ -5,6 +5,10 @@
 	</head>
 	<body>
 		<div>
+            <div>
+                <ol id="user-list">
+                </ol>
+            </div>
 			<div class="login-box">
 				<div>
 					<span id="login-error"></span>
@@ -31,6 +35,9 @@
 				<div>
 					<label>Your token is:</label><span id="user-token"></span>
 				</div>
+                <div>
+                    <label>Your role is:</label><span id="user-role"></span>
+                </div>
 				<div>
 					<div>
  						<button id="check-private-zone">Check the private zone!</button>
@@ -39,6 +46,20 @@
 						<span id="private-zone-content"></span>
 					</div>
 				</div>
+                <div>
+                    <div>
+                        <button id="check-private-as-admin">Check admin action!</button>
+                    </div>
+                    <div>
+                        <span id="private-as-admin-content"></span>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <button id="check-private-as-user">Check user action 1!</button>
+                    </div>
+                    <span id="private-as-user-content"></span>
+                </div>
 				<div>
 					<div>
  						<button id="check-private-zone-notoken">Now, try it without token...</button>

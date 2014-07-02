@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20140402052506) do
     t.string   "username"
     t.string   "password"
     t.string   "accessToken"
+    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

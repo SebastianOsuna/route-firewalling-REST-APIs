@@ -8,8 +8,20 @@
 
 	var PUBLIC = SERVER + "public";
 
-	var token, header;
+    var USERS = SERVER + "users";
 
+	var token, header, role;
+
+    // display user list
+    $.get( USERS ).success( function( data ) {
+        data.forEach( function( obj ) {
+            $("#user-list").append(
+                $("<li>").text( obj.username + ":" + obj.password + " - " + obj.role )
+            );
+        } );
+    } );
+
+    // login function
 	$("#submit").click(function(event) {
 		var username = $("#username").val();
 		var password = $("#password").val();
@@ -21,11 +33,14 @@
 			} 
 		).done( function( data ) {
 			$(".login-box").hide();
+            $("#user-list").hide();
 			$("#private-zone").show();
 			$("#user-id").text( data.id );
 			token = data.token;
 			header = data.header;
+            role = data.role;
 			$("#user-token").text( token );
+            $("#user-role").text( role );
 		} ).fail( function( jqXHR ) {
 			if( jqXHR.status == 401 ) {
 				// Bad Credentials
@@ -62,7 +77,7 @@
 			$.ajax(
 				{
 					url: PRIVATE,
-					type: "GET",
+					type: "GET"
 				}
 			).done( function( data ) {
 				// Shouldn't happen
@@ -74,6 +89,44 @@
 			$("#private-zone-content-notoken").text( "You haven't logged in, don't cheat!" ).css( { color: 'red' } );
 		}
 	});
+
+    $("#check-private-as-admin").click( function() {
+        if( token && header ) {
+            $.ajax(
+                {
+                    url: PRIVATE + "/admin",
+                    type: "GET",
+                    beforeSend: function( xhr ) { xhr.setRequestHeader( header, token ); }
+                }
+            ).done( function( data ) {
+                    // Shouldn't happen
+                    $("#private-as-admin-content").text( data.message ).css( { color: 'green' } );
+                } ).fail( function( jqXHR ) {
+                    $("#private-as-admin-content").text( jqXHR.responseJSON.error ).css( { color: 'red' } );
+                } );
+        } else{
+            $("#private-as-admin-content").text( "You haven't logged in, don't cheat!" ).css( { color: 'red' } );
+        }
+    } );
+
+    $("#check-private-as-user").click( function() {
+        if( token && header ) {
+            $.ajax(
+                {
+                    url: PRIVATE + "/user/action2",
+                    type: "GET",
+                    beforeSend: function( xhr ) { xhr.setRequestHeader( header, token ); }
+                }
+            ).done( function( data ) {
+                    // Shouldn't happen
+                    $("#private-as-user-content").text( data.message ).css( { color: 'green' } );
+                } ).fail( function( jqXHR ) {
+                    $("#private-as-user-content").text( jqXHR.responseJSON.error ).css( { color: 'red' } );
+                } );
+        } else{
+            $("#private-as-user-content").text( "You haven't logged in, don't cheat!" ).css( { color: 'red' } );
+        }
+    } );
 
 	if( $("#public-zone") ) { 
 		$.get( PUBLIC ).done( function( data ) {
